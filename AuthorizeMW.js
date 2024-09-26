@@ -1,0 +1,10 @@
+const express=require("express")
+const app=express()
+const {authorize}=require("./utils/middlewares")
+app.use(express.json())
+app.use(authorize)
+app.post("/login",(req,res)=>{
+    console.log("login route")
+    res.send("dummy")
+})
+app.listen(3001,()=>console.log("server has started"))
