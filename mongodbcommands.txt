@@ -40,14 +40,105 @@ SELECT * from TN where fname="john".
 
 Update:
 
-db.Credentials.updateOne({username:"john"},{$set:{password:"test@123"}})
+db.Credentials.updateOne({username:"john"},{$set:{password:{}}})
 db.Credentials.updateMany({},{$set:{city:"Delhi"}})
 db.Credentials.updateMany({state:"AP"},{$set:{city:"Hyderabad"}})
 db.Credentials.updateMany({city:"Vellore"},{$set:{country:"IND"}})
 
 
 db.Credentials.updateOne({username:"john"},{$rename:{"experience":"adminExp"}})
-db.Credentials.updateOne({username:"john"},{$rename:{"experience":"adminExp"}})
+db.Credentials.updateMany({username:"john" and condition},{$rename:{"country":"cntry","zipcode":"postalCode"}})
+
+
+db.Credentials.deleteOne({_id:ObjectId('66fbbdc26ea97e30a24af2f4')})
+db.Credentials.deleteMany({})
+
+
+writing conditions:
+
+
+
+
+
+db.Credentials.find({"username":"henry","city":"Vellore","experience":"3 years"})
+
+db.Credentials.find({"username":"henry","city":"Vellore","experience":"3 years"},{"username":1})
+
+
+
+find({$or:[{cond check 1},{cond check 2}]})
+
+db.Credentials.find({$or:[{"city":"Hyderabad"},{"city":"TPT"}]})
+
+db.Credentials.find({$and:[{"city":"Hyderabad"},{"username":"joe"}]}) =>explicit
+find({"city":"Hyderabad","username":"joe"}) =>implicit and operator
+
+
+db.Credentials.find({age:23})
+db.Credentials.find({age:{$eq:23}})
+
+db.Credentials.find({age:{$ne:23}})
+db.Credentials.find({age:{$gte:18}})
+db.Credentials.find({age:{$gt:18}})
+db.Credentials.find({age:{$lte:18}})
+db.Credentials.find({age:{$lt:18}})
+
+db.Credentials.find({"country":"US","age":{$gte:18}})
+
+
+(implicit and / or)
+.find({$or:[{"country":"ind"},{"country":"us"}]},{$and:[{age:{$gte:20}]})
+(explicit and )
+db.Credentials.find({$and:[{$or:[{"country":"US"},{"country":"IND"}]},{"age":{$gte:20}}]})
+
+
+city ="hyd" and age=20
+
+age=18 and age=20
+
+
+in /nin operator:
+
+find({$or:[{age:{$lte:18},{age:20}]})
+
+db.Credentials.find({age:{$nin:[18,20]}})
+db.Credentials.find({age:{$in:[18,20]}})
+
+db.Credentials.find({country:{$in:["IND","US"]}})
+
+
+Embedded document / sub document:
+
+db.Credentials.find({'technologies.frontend':"react js"})
+db.Credentials.find({'technologies.frontend':"react js",country:"IND"})
+db.Credentials.find({'technologies.frontend':{$in:["react js","vue js"]},country:"IND"})
+
+
+using and / or in sub documents:
+
+.find({
+$or:[{"technologies.frontend":"react js"},{"technologies.frontend":"vue js"}],
+country:"IND",
+age:{$gte:20}
+})
+
+
+.find({
+country:"IND",
+age:{$gte:18},
+$or:[{"technologies.frontend":"react js"}, {"technologies.frontend":"vue js"}]
+},{city:1,username:1})
+
+
+Arrays:
+
+db.Credentials.find({'prefferedLocation.0':"Pune"})
+db.Credentials.find({prefferedLocation:"Pune"})
+
+db.Credentials.find({prefferedLocation:{
+$all:["Chennai","Pune","Bengaluru"]
+}
+})
 
 
 
