@@ -22,6 +22,9 @@ const contactsModel=mongoose.model("contacts",{
     },
     ctech:{
         type:Object
+    },
+    cexp:{
+        type:String
     }
 })
 module.exports=contactsModel

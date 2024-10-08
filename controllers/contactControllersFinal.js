@@ -32,8 +32,45 @@ const contactDetails=async (req,res)=>{
     }
  }
 
+ const putUser=async (req,res)=>{
+    const data=req.body
+    // const result=await contactsModel.updateOne({cname:data.cname},data)
+    const result=await contactsModel.deleteOne({cname:data.cname})
+    const  replacedData=new contactsModel(data)
+    const insert=await replacedData.save()
+    console.log(insert)
+    res.send("dummy")
+ }
+
+ const patchUser=async (req,res)=>{
+    const data=req.body
+    const result=await contactsModel.updateOne({cname:data.cname},data)
+    res.send({
+        status:"successfully updated",
+        data:result
+    })
+ }
+const patchUserExp=async (req,res)=>{
+const data=req.query
+console.log(data.caddress)
+const result=await contactsModel.updateMany({caddress:data.caddress},{cexp:"1 year"})
+console.log(result)
+res.send({
+    status:"success",
+    data:result
+})
+}
+
+const deleteUser=async (req,res)=>{
+const data=req.params
+const result=await contactsModel.deleteOne({cname:data.username})
+res.send({
+    status:"deleted",
+    data:result
+})
+}
  
  module.exports={
-    contactDetails,getUser,createUser
+    contactDetails,getUser,createUser,putUser,patchUserExp,deleteUser
  }
  
