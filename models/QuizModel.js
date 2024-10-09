@@ -18,7 +18,7 @@ password:{
     max:[12,"maxlength should be 12"],
     validate:{
         validator:function(value){
-            return validator.isAlphaNumric(value)
+            return validator.isAlphanumeric(value)
         },
         message:"password validation failed , password should be alphanumeric"
     }
@@ -50,7 +50,8 @@ score:{
             return value<this.noofQns
         },
         message:"score is greater than no of qns"
-    }
+    },
+    default:0
     
 },
 difficulty:{
