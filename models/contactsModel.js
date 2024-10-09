@@ -1,5 +1,5 @@
 const mongoose=require("mongoose")
-const url="mongodb://localhost:27017/mongtest"
+const url="mongodb+srv://shruthi:test123@cluster0.rpq7s.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 const connect=mongoose.connect(url).then((res)=>console.log("connected successfully")).catch((err)=>console.log(err))
 
 const contactsModel=mongoose.model("contacts",{
