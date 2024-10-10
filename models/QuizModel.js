@@ -65,47 +65,47 @@ difficulty:{
 
 })
 const quizModel=new mongoose.model("QuizCollection",quizSchema)
+module.exports=quizModel
 
-
-// setTimeout(()=>quizModel.updateOne({quizId:2},{$set:{score:14}}).then((res)=>console.log(res)).catch((err)=>console.log(err)),3000)
-const data=new quizModel({
-    email:"admin@gmailcom",
-    quizId:5,
-    quizTag:"React",
-    noofQns:10,
-    score:9,
-    quiz:[
-        {
-            question:"what is react",
-            choice1:"variable",
-            choice2:"its a js framework",
-            choice3:"function",
-            ans:"choice2",
+// // setTimeout(()=>quizModel.updateOne({quizId:2},{$set:{score:14}}).then((res)=>console.log(res)).catch((err)=>console.log(err)),3000)
+// const data=new quizModel({
+//     email:"admin@gmailcom",
+//     quizId:5,
+//     quizTag:"React",
+//     noofQns:10,
+//     score:9,
+//     quiz:[
+//         {
+//             question:"what is react",
+//             choice1:"variable",
+//             choice2:"its a js framework",
+//             choice3:"function",
+//             ans:"choice2",
             
-        },
-        {
-            question:"what is react",
-            choice1:"variable",
-            choice2:"its a js framework",
-            choice3:"function",
-            ans:"choice2",
+//         },
+//         {
+//             question:"what is react",
+//             choice1:"variable",
+//             choice2:"its a js framework",
+//             choice3:"function",
+//             ans:"choice2",
             
-        },{
-            question:"what is react",
-            choice1:"variable",
-            choice2:"its a js framework",
-            choice3:"function",
-            ans:"choice2",
+//         },{
+//             question:"what is react",
+//             choice1:"variable",
+//             choice2:"its a js framework",
+//             choice3:"function",
+//             ans:"choice2",
             
-        },{
-            question:"what is react",
-            choice1:"variable",
-            choice2:"its a js framework",
-            choice3:"function",
-            ans:"choice2",
+//         },{
+//             question:"what is react",
+//             choice1:"variable",
+//             choice2:"its a js framework",
+//             choice3:"function",
+//             ans:"choice2",
             
-        }
-    ],
-    difficulty:"medium"
-})
-setTimeout(()=>data.save().then((Res)=>console.log("created")).catch((err)=>console.log(err)),2000)
+//         }
+//     ],
+//     difficulty:"medium"
+// })
+// setTimeout(()=>data.save().then((Res)=>console.log("created")).catch((err)=>console.log(err)),2000)
